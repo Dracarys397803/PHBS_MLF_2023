@@ -1,0 +1,6 @@
+tweets data: 
+https://huggingface.co/datasets/StephanAkkerman/financial-tweets-crypto
+from 2021-12-27 to 2023-11-15
+
+crypto data:
+crypto compare api
