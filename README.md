@@ -63,3 +63,58 @@ Homework 2 is in the main branch
 - **Next_day_return(Target Varible)**: $$\text{If } Close_{t+1}>Close_t, 1$$
                                        $$\text{Else}, 0$$
 ### Training and Testing
+**Compare models with and without tweets data**
+**Use Grid search (scoring=acc) to find best hyper-parameters**
+#### Preprocess
+- Drop datapoints which contain no more than 7 tweets, **402** datapoints left
+- Split the dataset into train and test
+  * Test size=0.3
+  * Shuffle=False to keep the time order of the data(Train with old data and test with relatively new data)
+  * In train and test dataset, the frequencies of y=1 are equal(0.438)
+ - Standardize the data
+#### Single Model
+1. Logistic Regression
+- C=0.0001, penalty='l1' in both models
+- Training acc = testing acc = 0.562, f1 score=0 in both models \
+<img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/lr_without.png" width="450" height="800"> <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/lr_with.png" width="450" height="800">
+2. SVM
+- C=0.0001, kernel='linear'
+- Training acc = testing acc = 0.562, f1 score=0 in both models \
+<img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/svm_without.png" width="450" height="800"> <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/svm_with.png" width="450" height="800"> \
+**Single model does not show any prediction ability**
+#### Ensemble Learning
+1. Random Forest
+- Base model: max_depth=1, max_features='log2', n_estimators=110, traing acc=0.555
+- Full model: max_depth=1, max_features='sqrt', n_estimators=160, traing acc=0.562
+- Testing acc = 0.562, f1 score=0 in both models \
+<img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/0d386a30-1626-42b1-8195-12c6a69acd57" width="450" height="800"> <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/4b794613-1e1b-4f90-af29-8b0f113d1237" width="450" height="800"> \
+2. Adaboost (Tree)
+- Base model: learning_rate=0.1, n_estimators=10, training acc=0.495, testing acc=0.529, f1 score=0.374
+- Full model: learning_rate=0.7, n_estimators=10, training acc=0.498, testing_acc=0.479, f1 score=0.364 \
+<img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/289d654c-4e1c-4785-bb51-2fcede29d1de" width="450" height="800"> <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/57f7130c-d9e5-4e4a-a16c-3527750cc93c" width="450" height="800"> \
+#### PCA
+- Use all predictors and only involve ensemble models\
+  <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/pca.png" width="450" height="400"> 
+- PCA results show 5 components are enough
+- **Random Forest**: max_depth=1, max_features='sqrt', n_estimators=20, training acc=0.562, testing acc=0.545, f1 score=0
+  <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/rf_pca.png" width="450" height="800">
+- **Adaboost**: learning_rate=0.8, n_estimators=130, training acc=0.545, testing_acc=0.521, f1 score=0.293
+  <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/ada_kpca.png" width="450" height="800">
+#### Kernel PCA
+- Use all predictors and only involve ensemble models\
+  <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/kernel_pca.png" width="450" height="400">
+- 50 components are enough
+- **Random Forest**: max_depth=1, max_features='sqrt', n_estimators=40, training acc=0.562, testing acc=0.562, f1 score=0
+  <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/rf_kpca.png" width="450" height="800"> 
+- **Adaboost**: learning_rate=0.8, n_estimators=130, training acc=0.545, testing_acc=0.521, f1 score=0.293
+  <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/ada_kpca.png" width="450" height="800">
+### Conclusion
+|  Model   |Training Acc|Testing Acc| F1 score | ROC AUC |
+|---------:|-----------:|----------:|---------:|--------:|
+| LR_Base  |    0.562   |   0.562   |     0    |    0.5  |
+| LR_Full  |    0.562   |   0.562   |     0    |    0.5  |
+| SVM_Base |    0.562   |   0.562   |     0    |    0.5  |
+| SVM_Full |    0.562   |   0.562   |     0    |    0.5  |
+| RF_Base  |    0.562   |   0.562   |     0    |    0.5  |
+| RF_Full  |
+| Ada_Base |
