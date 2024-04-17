@@ -96,25 +96,37 @@ Homework 2 is in the main branch
 - Use all predictors and only involve ensemble models\
   <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/pca.png" width="450" height="400"> 
 - PCA results show 5 components are enough
-- **Random Forest**: max_depth=1, max_features='sqrt', n_estimators=20, training acc=0.562, testing acc=0.545, f1 score=0
-  <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/rf_pca.png" width="450" height="800">
-- **Adaboost**: learning_rate=0.8, n_estimators=130, training acc=0.545, testing_acc=0.521, f1 score=0.293
-  <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/ada_kpca.png" width="450" height="800">
+- **Random Forest**: max_depth=1, max_features='sqrt', n_estimators=50, training acc=0.566, testing acc=0.562, f1 score=0
+  <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/c4083033-1b0c-40b7-aaae-d25f72114720" width="450" height="800">
+- **Adaboost**: learning_rate=0.6, n_estimators=80, training acc=0.526, testing_acc=0.521, f1 score=0.408
+  <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/89d16c42-44a9-4b11-aea7-0817ab60622f" width="450" height="800">
 #### Kernel PCA
 - Use all predictors and only involve ensemble models\
   <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/kernel_pca.png" width="450" height="400">
 - 50 components are enough
-- **Random Forest**: max_depth=1, max_features='sqrt', n_estimators=40, training acc=0.562, testing acc=0.562, f1 score=0
-  <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/rf_kpca.png" width="450" height="800"> 
-- **Adaboost**: learning_rate=0.8, n_estimators=130, training acc=0.545, testing_acc=0.521, f1 score=0.293
-  <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/ada_kpca.png" width="450" height="800">
+- **Random Forest**: max_depth=1, max_features='sqrt', n_estimators=20, training acc=0.562, testing acc=0.562, f1 score=0
+  <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/20ca5d18-7556-48c3-b6a8-71214333ce49" width="450" height="800"> 
+- **Adaboost**: learning_rate=1, n_estimators=190, training acc=0.548, testing_acc=0.529, f1 score=0.278
+  <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/a924beb0-f398-44c9-83aa-81fb254f1bd1" width="450" height="800">
 ### Conclusion
 |  Model   |Training Acc|Testing Acc| F1 score | ROC AUC |
 |---------:|-----------:|----------:|---------:|--------:|
-| LR_Base  |    0.562   |   0.562   |     0    |    0.5  |
-| LR_Full  |    0.562   |   0.562   |     0    |    0.5  |
-| SVM_Base |    0.562   |   0.562   |     0    |    0.5  |
-| SVM_Full |    0.562   |   0.562   |     0    |    0.5  |
-| RF_Base  |    0.562   |   0.562   |     0    |    0.5  |
-| RF_Full  |
-| Ada_Base |
+| LR_Base  |    0.562   |   0.562   |    0     |    0.5  |
+| LR_Full  |    0.562   |   0.562   |    0     |    0.5  |
+| SVM_Base |    0.562   |   0.562   |    0     |    0.5  |
+| SVM_Full |    0.562   |   0.562   |    0     |    0.5  |
+| RF_Base  |    0.555   |   0.562   |    0     |    0.52 |
+| RF_Full  |    0.562   |   0.562   |    0     |    0.5  |
+| Ada_Base |    0.495   |   0.529   |    0.374 |    0.51 |
+| Ada_Full |    0.498   |   0.479   |    0.364 |    0.46 |
+| PCA_RF   |    0.566   |   0.562   |    0     |    0.48 |
+| PCA_Ada  |    0.526   |   0.521   |    0.408 |    0.50 |
+| KPCA_RF  |    0.576   |   0.562   |    0     |    0.54 |
+| KPCA_Ada |    0.548   |   0.529   |    0.278 |    0.49 |
+1. Both base and full models do not perform well in predicting price change of BTC
+2. Ensemble learning performs slightly better than single model
+
+**Interpretation**
+1. For technical factors, I ignore some BTC-specific factors due to data availability (e.g. Bitcoin Difficulty, Active Addresses, Network Value to Transactions Ratio etc.).
+2. For tweets data, the data only focuses on financial influencers' tweets. In a highly decentralized market, using all tweets related to cryptocurrency may have a better prediction power. Besides, it is also possible that the sentiment effect appears in a different time range (i.e. Minute, Hour, Week, Month)
+3. The result may also simply suggest tweeters have less power in influencing the future price of BTC than they and I believe.
