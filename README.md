@@ -76,22 +76,22 @@ Homework 2 is in the main branch
 1. Logistic Regression
 - C=0.0001, penalty='l1' in both models
 - Training acc = testing acc = 0.562, f1 score=0 in both models \
-<img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/lr_without.png" width="450" height="800"> <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/lr_with.png" width="450" height="800">
+<img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/lr_without.png" width="400" height="700"> <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/lr_with.png" width="400" height="700">
 2. SVM
 - C=0.0001, kernel='linear'
 - Training acc = testing acc = 0.562, f1 score=0 in both models \
-<img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/svm_without.png" width="450" height="800"> <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/svm_with.png" width="450" height="800"> \
+<img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/svm_without.png" width="400" height="700"> <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/svm_with.png" wwidth="400" height="700"> \
 **Single model does not show any prediction ability**
 #### Ensemble Learning
 1. Random Forest
 - Base model: max_depth=1, max_features='log2', n_estimators=110, traing acc=0.555
 - Full model: max_depth=1, max_features='sqrt', n_estimators=160, traing acc=0.562
 - Testing acc = 0.562, f1 score=0 in both models \
-<img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/0d386a30-1626-42b1-8195-12c6a69acd57" width="450" height="800"> <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/4b794613-1e1b-4f90-af29-8b0f113d1237" width="450" height="800"> \
+<img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/0d386a30-1626-42b1-8195-12c6a69acd57" width="400" height="700"> <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/4b794613-1e1b-4f90-af29-8b0f113d1237" width="400" height="700"> \
 2. Adaboost (Tree)
 - Base model: learning_rate=0.1, n_estimators=10, training acc=0.495, testing acc=0.529, f1 score=0.374
 - Full model: learning_rate=0.7, n_estimators=10, training acc=0.498, testing_acc=0.479, f1 score=0.364 \
-<img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/289d654c-4e1c-4785-bb51-2fcede29d1de" width="450" height="800"> <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/57f7130c-d9e5-4e4a-a16c-3527750cc93c" width="450" height="800"> \
+<img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/289d654c-4e1c-4785-bb51-2fcede29d1de" width="400" height="700"> <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/57f7130c-d9e5-4e4a-a16c-3527750cc93c" width="400" height="700"> \
 #### PCA
 - Use all predictors and only involve ensemble models\
   <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/pca.png" width="450" height="400"> 
