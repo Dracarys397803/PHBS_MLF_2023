@@ -105,9 +105,9 @@ Homework 2 is in the main branch
   <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/kernel_pca.png" width="450" height="400">
 - 50 components are enough
 - **Random Forest**: max_depth=1, max_features='sqrt', n_estimators=20, training acc=0.562, testing acc=0.562, f1 score=0
-  <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/20ca5d18-7556-48c3-b6a8-71214333ce49" width="450" height="800"> 
+  <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/20ca5d18-7556-48c3-b6a8-71214333ce49" width="300" height="450"> 
 - **Adaboost**: learning_rate=1, n_estimators=190, training acc=0.548, testing_acc=0.529, f1 score=0.278
-  <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/a924beb0-f398-44c9-83aa-81fb254f1bd1" width="450" height="800">
+  <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/a924beb0-f398-44c9-83aa-81fb254f1bd1" width="300" height="450">
 ### Conclusion
 |  Model   |Training Acc|Testing Acc| F1 score | ROC AUC |
 |---------:|-----------:|----------:|---------:|--------:|
