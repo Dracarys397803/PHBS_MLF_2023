@@ -96,7 +96,7 @@ Homework 2 is in the main branch
 - Use all predictors and only involve ensemble models\
   <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/pca.png" width="450" height="400"> 
 - PCA results show 5 components are enough
-- **Random Forest**: max_depth=1, max_features='sqrt', n_estimators=50, training acc=0.566, testing acc=0.562, f1 score=0
+- **Random Forest**: max_depth=1, max_features='sqrt', n_estimators=50, training acc=0.566, testing acc=0.562, f1 score=0 \
   <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/c4083033-1b0c-40b7-aaae-d25f72114720" width="300" height="450">
 - **Adaboost**: learning_rate=0.6, n_estimators=80, training acc=0.526, testing_acc=0.521, f1 score=0.408
   <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/89d16c42-44a9-4b11-aea7-0817ab60622f" width="300" height="450">
@@ -104,7 +104,7 @@ Homework 2 is in the main branch
 - Use all predictors and only involve ensemble models\
   <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/kernel_pca.png" width="450" height="400">
 - 50 components are enough
-- **Random Forest**: max_depth=1, max_features='sqrt', n_estimators=20, training acc=0.562, testing acc=0.562, f1 score=0
+- **Random Forest**: max_depth=1, max_features='sqrt', n_estimators=20, training acc=0.562, testing acc=0.562, f1 score=0 \
   <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/20ca5d18-7556-48c3-b6a8-71214333ce49" width="300" height="450"> 
 - **Adaboost**: learning_rate=1, n_estimators=190, training acc=0.548, testing_acc=0.529, f1 score=0.278
   <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/a924beb0-f398-44c9-83aa-81fb254f1bd1" width="300" height="450">
