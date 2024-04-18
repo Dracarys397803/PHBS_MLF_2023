@@ -76,11 +76,11 @@ Homework 2 is in the main branch
 1. Logistic Regression
 - C=0.0001, penalty='l1' in both models
 - Training acc = testing acc = 0.562, f1 score=0 in both models \
-<img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/lr_without.png" width="400" height="700"> <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/lr_with.png" width="400" height="700">
+<img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/lr_without.png" width="300" height="450"> <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/lr_with.png" width="300" height="450">
 2. SVM
 - C=0.0001, kernel='linear'
 - Training acc = testing acc = 0.562, f1 score=0 in both models \
-<img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/svm_without.png" width="400" height="700"> <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/svm_with.png" wwidth="400" height="700"> \
+<img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/svm_without.png" width="300" height="450"> <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/svm_with.png" width="300" height="450"> \
 **Single model does not show any prediction ability**
 #### Ensemble Learning
 1. Random Forest
