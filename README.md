@@ -50,7 +50,37 @@ Homework 2 is in the main branch
 1. **Group tweets data on a daily basis**
 - BTC related tweets (Tweets which mentioned BTC)
 - Total tweets (Tweets which related to cryptocurrencies)
-  <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/tweets_data_all.png" width="800" height="400"> 
+```ruby
+for date, group in daily_data:
+    # How many times btc is mentioned
+    btc_mentioned = group['tickers'].sum()
+    # How many tweets per day
+    data_count = len(group)
+    # Average sentiment of BTC
+    btc_neg_avg = group['neg'][group['tickers']==1].mean()
+    btc_pos_avg = group['pos'][group['tickers']==1].mean()
+    btc_neu_avg = group['neu'][group['tickers']==1].mean()
+    btc_com_avg = group['compound'][group['tickers']==1].mean()
+    # Average sentiment of all tweets
+    neg_avg = group['neg'].mean()
+    pos_avg = group['pos'].mean()
+    neu_avg = group['neu'].mean()
+    com_avg = group['compound'].mean()
+    
+    tweets_summary.append({
+        'date': date,
+        'BTCtweets': btc_mentioned,
+        'Totaltweets': data_count,
+        'btc_neg_avg': btc_neg_avg,
+        'btc_pos_avg': btc_pos_avg,
+        'btc_neu_avg': btc_neu_avg,
+        'btc_com_avg': btc_com_avg,
+        'neg_avg': neg_avg,
+        'pos_avg': pos_avg,
+        'neu_avg': neu_avg,
+        'com_avg': com_avg
+    })
+```
 2. **Calculate technical factors and target varible**
 - MOM_10: $$Close_t - Close_{t-10}$$
 - SMA_5 & SMA_10: $$\frac{\displaystyle\sum_{i=0}^{k-1} Close_{t-i}}{k} (k=5, 10)$$
@@ -63,7 +93,32 @@ Homework 2 is in the main branch
 - **Next_day_return(Target Varible)**: $$\text{If } Close_{t+1}>Close_t, 1$$
                                        $$\text{Else}, 0$$
 ### Training and Testing
+```ruby
+predictors_name = ['BTCtweets', 'Totaltweets', 'btc_pos_avg', 'btc_neg_avg', 'pos_avg', 'neg_avg', 
+                   'volume', 'MOM_10', 'SMA_5', 'SMA_10', 'RSI_14', 'MFI_14']
+y_name = ['nxt_day_return']
+```
 **Compare models with and without tweets data**
+```ruby
+from sklearn.metrics import (confusion_matrix, roc_curve, auc, f1_score,
+                            ConfusionMatrixDisplay, RocCurveDisplay, accuracy_score)
+import matplotlib.pyplot as plt
+# A function return all scores and graph I need to evaluate the model
+def evaluation(estimator, X_test, y_test):
+    y_pred = estimator.predict(X_test)
+    
+    RocCurveDisplay.from_estimator(estimator, X_test, y_test, plot_chance_level=True)
+    plt.title('Receiver Operating Characteristic (ROC) Curve')
+
+    ConfusionMatrixDisplay.from_estimator(estimator, X_test, y_test, cmap=plt.cm.Blues)
+    plt.title('Confusion Matrix')
+
+    plt.tight_layout()
+    plt.show()
+    print('The f1_score is %.3f' % f1_score(y_test, y_pred))
+    print('The acc is %.3f' % accuracy_score(y_test, y_pred))
+    return
+```
 **Use Grid search (scoring=acc) to find best hyper-parameters**
 #### Preprocess
 - Drop datapoints which contain no more than 7 tweets, **402** datapoints left
