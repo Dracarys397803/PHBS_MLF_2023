@@ -1,12 +1,7 @@
-# PHBS_MLF_2023
-## Homework
-Homework 1 is in the folder "give-me-some-credit" \
-Homework 2 is in the main branch 
-
-## Project
+# Project
 **The project aims to explore whether combining tweets data with common technical factors can predict BTC price change** 
-### Data
-#### Tweets Data
+## Data
+### Tweets Data
 1. **The dataset is from huggingface. The link is https://huggingface.co/datasets/StephanAkkerman/financial-tweets-crypto.**
 - The dataset is the scraped financial tweets collected from a variety of financial influencers on Twitter
 - The original dataset contains: 
@@ -33,7 +28,7 @@ Homework 2 is in the main branch
   - Results: \
     Compound is a index averaging the neg, neu and pos scores of the sentence
     <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/tweets_with_sentiment.png" width="800" height="500">
-#### Market Data
+### Market Data
 1. **The dataset is from cryptocompare api.**
 - The data is shown on a daily basis
 - The original dataset contains:
@@ -46,7 +41,7 @@ Homework 2 is in the main branch
   * close: the close price of the day
 2. **Transform unix timestamp into ISO8601 timestamp**
     <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/market_data.png" width="800" height="400">
-#### Concat Data
+### Concat Data
 1. **Group tweets data on a daily basis**
 - BTC related tweets (Tweets which mentioned BTC)
 - Total tweets (Tweets which related to cryptocurrencies)
@@ -92,7 +87,7 @@ for date, group in daily_data:
                                       $$\text{Typical Price}=\frac{High+Low+Close}{3}$$
 - **Next_day_return(Target Varible)**: $$\text{If } Close_{t+1}>Close_t, 1$$
                                        $$\text{Else}, 0$$
-### Training and Testing
+## Training and Testing
 ```ruby
 predictors_name = ['BTCtweets', 'Totaltweets', 'btc_pos_avg', 'btc_neg_avg', 'pos_avg', 'neg_avg', 
                    'volume', 'MOM_10', 'SMA_5', 'SMA_10', 'RSI_14', 'MFI_14']
@@ -120,14 +115,14 @@ def evaluation(estimator, X_test, y_test):
     return
 ```
 **Use Grid search (scoring=acc) to find best hyper-parameters**
-#### Preprocess
+### Preprocess
 - Drop datapoints which contain no more than 7 tweets, **402** datapoints left
 - Split the dataset into train and test
   * Test size=0.3
   * Shuffle=False to keep the time order of the data(Train with old data and test with relatively new data)
   * In train and test dataset, the frequencies of y=1 are equal(0.438)
  - Standardize the data
-#### Single Model
+### Single Model
 1. Logistic Regression
 - C=0.0001, penalty='l1' in both models
 - Training acc = testing acc = 0.562, f1 score=0 in both models \
@@ -137,7 +132,7 @@ def evaluation(estimator, X_test, y_test):
 - Training acc = testing acc = 0.562, f1 score=0 in both models \
 <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/svm_without.png" width="300" height="450"> <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/svm_with.png" width="300" height="450"> \
 **Single model does not show any prediction ability**
-#### Ensemble Learning
+### Ensemble Learning
 1. Random Forest
 - Base model: max_depth=1, max_features='log2', n_estimators=110, traing acc=0.555
 - Full model: max_depth=1, max_features='sqrt', n_estimators=160, traing acc=0.562
@@ -147,7 +142,7 @@ def evaluation(estimator, X_test, y_test):
 - Base model: learning_rate=0.1, n_estimators=10, training acc=0.495, testing acc=0.529, f1 score=0.374
 - Full model: learning_rate=0.7, n_estimators=10, training acc=0.498, testing_acc=0.479, f1 score=0.364 \
 <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/289d654c-4e1c-4785-bb51-2fcede29d1de" width="300" height="450"> <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/57f7130c-d9e5-4e4a-a16c-3527750cc93c" width="300" height="450"> \
-#### PCA
+### PCA
 - Use all predictors and only involve ensemble models\
   <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/pca.png" width="450" height="400"> 
 - PCA results show 5 components are enough
@@ -155,7 +150,7 @@ def evaluation(estimator, X_test, y_test):
   <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/c4083033-1b0c-40b7-aaae-d25f72114720" width="300" height="450">
 - **Adaboost**: learning_rate=0.6, n_estimators=80, training acc=0.526, testing_acc=0.521, f1 score=0.408
   <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/89d16c42-44a9-4b11-aea7-0817ab60622f" width="300" height="450">
-#### Kernel PCA
+### Kernel PCA
 - Use all predictors and only involve ensemble models\
   <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/blob/main/Image/kernel_pca.png" width="450" height="400">
 - 50 components are enough
@@ -163,7 +158,7 @@ def evaluation(estimator, X_test, y_test):
   <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/20ca5d18-7556-48c3-b6a8-71214333ce49" width="300" height="450"> 
 - **Adaboost**: learning_rate=1, n_estimators=190, training acc=0.548, testing_acc=0.529, f1 score=0.278
   <img src="https://github.com/Dracarys397803/PHBS_MLF_2023/assets/160571976/a924beb0-f398-44c9-83aa-81fb254f1bd1" width="300" height="450">
-### Conclusion
+## Conclusion
 |  Model   |Training Acc|Testing Acc| F1 score | ROC AUC |
 |---------:|-----------:|----------:|---------:|--------:|
 | LR_Base  |    0.562   |   0.562   |    0     |    0.5  |
